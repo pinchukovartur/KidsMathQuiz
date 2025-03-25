@@ -1,9 +1,21 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class Answer
+﻿public class Answer : IAnswer
 {
-    public string answer;
-    public bool isCorrect;
+    private string _answer;
+    private bool _isCorrect;
+
+    public Answer(string answer, bool isCorrect)
+    {
+        _answer = answer;
+        _isCorrect = isCorrect;
+    }
+
+    public string GetAnswerText()
+    {
+        return _answer;
+    }
+
+    public bool IsCorrect()
+    {
+        return _isCorrect;
+    }
 }

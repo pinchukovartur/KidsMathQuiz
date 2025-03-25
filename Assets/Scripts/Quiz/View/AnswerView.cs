@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
@@ -11,17 +9,23 @@ public class AnswerView : MonoBehaviour
 
     [SerializeField]
     private Text _answerLabel;
-  
-    public void SetAnswer(string answer) {
-        _answerLabel.text = answer;
+
+    private IAnswer _currentAnswer;
+
+    public void SetAnswer(IAnswer answer)
+    {
+        _currentAnswer = answer;
+        _answerLabel.text = _currentAnswer.GetAnswerText();
     }
 
-    public void SetOnClickAction(UnityAction onClickAction){
+    public void SetOnClickAction(UnityAction<IAnswer> onClickAction)
+    {
         _answerButton.onClick.RemoveAllListeners();
-        _answerButton.onClick.AddListener(onClickAction);
+        _answerButton.onClick.AddListener(() => { onClickAction?.Invoke(_currentAnswer); });
     }
 
-    public void SetAnswerButtonsInteractable(bool interactable) {
+    public void SetAnswerButtonsInteractable(bool interactable)
+    {
         _answerButton.interactable = interactable;
     }
 }

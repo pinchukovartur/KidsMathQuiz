@@ -1,9 +1,23 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using System.Collections.Generic;
 
-public class Question
+public class Question : IQuestion
 {
-    public string question;
-    public List<Answer> asnwers = new List<Answer>(4);
+    private string _question;
+    private List<IAnswer> _asnwers = new List<IAnswer>(4);
+
+    public Question(string question, List<IAnswer> asnwers)
+    {
+        _question = question;
+        _asnwers = asnwers;
+    }
+
+    List<IAnswer> IQuestion.GetAnswers()
+    {
+        return _asnwers;
+    }
+
+    string IQuestion.GetQuestionText()
+    {
+        return _question;
+    }
 }

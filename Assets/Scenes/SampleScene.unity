@@ -328,7 +328,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 197647974}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a1e80275240f04f42a76060d6ef57323, type: 3}
+  m_Script: {fileID: 11500000, guid: 048db6c359298014e9df240fc2278913, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _answerButton: {fileID: 197647976}
@@ -343,7 +343,6 @@ GameObject:
   m_Component:
   - component: {fileID: 276595958}
   - component: {fileID: 276595960}
-  - component: {fileID: 276595961}
   - component: {fileID: 276595959}
   m_Layer: 5
   m_Name: GameWindow
@@ -390,26 +389,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 276595957}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Script: {fileID: 11500000, guid: fea455b043e464f498943e7ce5c3db9b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
-  m_RaycastTarget: 1
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
+  _questionView: {fileID: 1457873141}
+  _answerViews:
+  - {fileID: 1362563192}
+  - {fileID: 197647979}
+  - {fileID: 1065254297}
+  - {fileID: 1939834844}
+  _answerResultText: {fileID: 2086166935}
+  _gameStatisticsText: {fileID: 1528227523}
+  _nextButton: {fileID: 1831912977}
+  _progress: {fileID: 1540058182}
 --- !u!222 &276595960
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -418,29 +410,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 276595957}
   m_CullTransparentMesh: 0
---- !u!114 &276595961
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 276595957}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a510e487e084f054fa7d48c1e3b1b272, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  questionView: {fileID: 1457873141}
-  answerViews:
-  - {fileID: 1362563192}
-  - {fileID: 197647979}
-  - {fileID: 1065254297}
-  - {fileID: 1939834844}
-  _lostQuestsCount: {fileID: 1528227523}
-  feedbackText: {fileID: 2086166935}
-  nextButton: {fileID: 1831912977}
-  stopButton: {fileID: 1945347131}
-  _progress: {fileID: 1540058182}
 --- !u!1 &427170473
 GameObject:
   m_ObjectHideFlags: 0
@@ -527,10 +496,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 427170473}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ac03f638a0b011547851fba1fd57d483, type: 3}
+  m_Script: {fileID: 11500000, guid: ddcf59b6ffaff6846a7c943fd6650f04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _logic: {fileID: 276595961}
+  _quiz: {fileID: 276595959}
 --- !u!1 &486282703
 GameObject:
   m_ObjectHideFlags: 0
@@ -1148,7 +1117,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1065254292}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a1e80275240f04f42a76060d6ef57323, type: 3}
+  m_Script: {fileID: 11500000, guid: 048db6c359298014e9df240fc2278913, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _answerButton: {fileID: 1065254294}
@@ -1658,7 +1627,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1362563187}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a1e80275240f04f42a76060d6ef57323, type: 3}
+  m_Script: {fileID: 11500000, guid: 048db6c359298014e9df240fc2278913, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _answerButton: {fileID: 1362563189}
@@ -1673,8 +1642,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1457873138}
   - component: {fileID: 1457873140}
-  - component: {fileID: 1457873141}
   - component: {fileID: 1457873139}
+  - component: {fileID: 1457873141}
   m_Layer: 5
   m_Name: Question
   m_TagString: Untagged
@@ -1753,7 +1722,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1457873137}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f78ec186df7f1c64f807675c12dac1bd, type: 3}
+  m_Script: {fileID: 11500000, guid: 0b4d652ba0eb9ea45915a45f3d909c27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _questionLabel: {fileID: 1457873139}
@@ -1847,7 +1816,7 @@ GameObject:
   - component: {fileID: 1528227524}
   - component: {fileID: 1528227523}
   m_Layer: 5
-  m_Name: QuestsSize
+  m_Name: QuestsStats
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1867,9 +1836,9 @@ RectTransform:
   m_Father: {fileID: 276595958}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 372.08, y: -53}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 0, y: -39.699997}
   m_SizeDelta: {x: 727.8496, y: 52}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1528227523
@@ -2027,8 +1996,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -14.42, y: 192.50002}
-  m_SizeDelta: {x: 697.83997, y: 20.999996}
+  m_AnchoredPosition: {x: -14.42, y: 186.4}
+  m_SizeDelta: {x: 697.83997, y: 24.05}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1540058182
 MonoBehaviour:
@@ -2745,7 +2714,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1939834839}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a1e80275240f04f42a76060d6ef57323, type: 3}
+  m_Script: {fileID: 11500000, guid: 048db6c359298014e9df240fc2278913, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _answerButton: {fileID: 1939834841}

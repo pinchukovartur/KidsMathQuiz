@@ -1,54 +1,52 @@
-﻿using System.Collections;
+﻿using Libs;
 using System.Collections.Generic;
 using UnityEngine;
-using Libs;
 
 public class QuestionsManager : Singleton<QuestionsManager>
 {
-    public List<Question> GetFirstLevelQuestions() {
-        List<Question> result = new List<Question>(100);
+    public List<IQuestion> GetFirstLevelQuestions()
+    {
+        List<IQuestion> result = new List<IQuestion>(100);
 
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < 101; i++)
+        {
             int a = Random.Range(0, 11);
             int b = Random.Range(0, 11 - a); // гарантируем, что сумма <= 10
-            Question question = new Question();
-            question.question = a + " + " + b + " = ?";
 
 
-            List<Answer> answers = new List<Answer>(4);
-            Answer correctAswer = new Answer();
-            correctAswer.isCorrect = true;
-            correctAswer.answer = (a + b).ToString();
+            List<IAnswer> answers = new List<IAnswer>(4);
+            Answer correctAswer = new Answer((a + b).ToString(), true);
             answers.Add(correctAswer);
 
             // Генерируем 3 уникальных неправильных ответа
             while (answers.Count < 4)
             {
-                Answer wrongAnswer = new Answer();
-                wrongAnswer.isCorrect = false;
-                wrongAnswer.answer = Random.Range(0, 11).ToString();
-
+                Answer wrongAnswer = new Answer(Random.Range(0, 11).ToString(), false);
                 bool isFind = false;
-                foreach (var answer in answers) {
-                    if (answer.answer == wrongAnswer.answer) {
+                foreach (var answer in answers)
+                {
+                    if (answer.GetAnswerText() == wrongAnswer.GetAnswerText())
+                    {
                         isFind = true;
                         break;
                     }
                 }
-                if (!isFind){
+                if (!isFind)
+                {
                     answers.Add(wrongAnswer);
                 }
-             }
-            question.asnwers = Common.ShuffleList<Answer>(answers);
+            }
+
+            Question question = new Question(a + " + " + b + " = ?", Common.ShuffleList<IAnswer>(answers));
             result.Add(question);
         }
 
-        return Common.ShuffleList<Question>(result);
+        return Common.ShuffleList<IQuestion>(result);
     }
 
-    public List<Question> GetSecondLevelQuestions()
+    public List<IQuestion> GetSecondLevelQuestions()
     {
-        List<Question> result = new List<Question>(10);
+        List<IQuestion> result = new List<IQuestion>(100);
 
         Dictionary<int, int> valueWeight = new Dictionary<int, int>() {
             { 10, 140 },
@@ -64,38 +62,33 @@ public class QuestionsManager : Singleton<QuestionsManager>
             { 0, 5 },
         };
 
-        for (int i = 0; i < 10; i++)
+        for (int i = 0; i < 101; i++)
         {
             int a = Random.Range(0, 161);
             int v = 0;
-            foreach (var weight in valueWeight) {
-                if (a >= weight.Value) {
+            foreach (var weight in valueWeight)
+            {
+                if (a >= weight.Value)
+                {
                     v = weight.Key;
                     break;
                 }
             }
             int b = Random.Range(0, v); // гарантируем, что разница <= 10
-            Question question = new Question();
-            question.question = v + " - " + b + " = ?";
 
 
-            List<Answer> answers = new List<Answer>(4);
-            Answer correctAswer = new Answer();
-            correctAswer.isCorrect = true;
-            correctAswer.answer = (v - b).ToString();
+            List<IAnswer> answers = new List<IAnswer>(4);
+            Answer correctAswer = new Answer((v - b).ToString(), true);
             answers.Add(correctAswer);
 
             // Генерируем 3 уникальных неправильных ответа
             while (answers.Count < 4)
             {
-                Answer wrongAnswer = new Answer();
-                wrongAnswer.isCorrect = false;
-                wrongAnswer.answer = Random.Range(0, 11).ToString();
-
+                Answer wrongAnswer = new Answer(Random.Range(0, 11).ToString(), false);
                 bool isFind = false;
                 foreach (var answer in answers)
                 {
-                    if (answer.answer == wrongAnswer.answer)
+                    if (answer.GetAnswerText() == wrongAnswer.GetAnswerText())
                     {
                         isFind = true;
                         break;
@@ -106,10 +99,10 @@ public class QuestionsManager : Singleton<QuestionsManager>
                     answers.Add(wrongAnswer);
                 }
             }
-            question.asnwers = Common.ShuffleList<Answer>(answers);
+            Question question = new Question(v + " - " + b + " = ?", Common.ShuffleList<IAnswer>(answers));
             result.Add(question);
         }
 
-        return Common.ShuffleList<Question>(result);
+        return Common.ShuffleList<IQuestion>(result);
     }
 }
