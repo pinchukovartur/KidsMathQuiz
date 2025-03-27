@@ -50,7 +50,7 @@ public class QuizWindow : MonoBehaviour
         _nextButton.gameObject.SetActive(false);
         SetAnswerButtonsInteractable(true);
 
-        _gameStatisticsText.text = "Осталось: " + _lastQuestionsCount.ToString() + " правильно: " + _correct.ToString() + " не правильно: " + _unCorrect.ToString();
+        _gameStatisticsText.text = "Осталось: " + _lastQuestionsCount.ToString() + "\nПравильно: " + _correct.ToString() + " не правильно: " + _unCorrect.ToString();
         _progress.value = (_correct + _unCorrect) / (float)_allSize;
 
     }
@@ -66,7 +66,7 @@ public class QuizWindow : MonoBehaviour
         else
         {
             _answerResultText.color = Color.red;
-            _answerResultText.text = "Неправильно!";
+            _answerResultText.text = "Неправильно!\nВерный ответ: " + GetCorrectAswer();
             _unCorrect++;
         }
         _logic.CheckAnswer(selectedAnswer);
@@ -104,5 +104,19 @@ public class QuizWindow : MonoBehaviour
         {
             btn.SetAnswerButtonsInteractable(interactable);
         }
+    }
+
+    private string GetCorrectAswer() {
+    
+        var question = _logic.GetCurrentQuestion();
+        if (question == null) {
+            return "";
+        }
+        foreach (var answer in question.GetAnswers()) {
+            if (answer.IsCorrect()) {
+                return answer.GetAnswerText();
+            }
+        }
+        return "";
     }
 }
