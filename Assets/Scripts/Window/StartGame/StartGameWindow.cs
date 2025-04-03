@@ -33,7 +33,7 @@ public class StartGameWindow : MonoBehaviour
     [SerializeField]
     private GameObject _gameWindow;
 
-    private void OnEnable()
+    private void Start()
     {
         foreach (var setting in _settings) {
             LevelItemBehaviour levelItem = Instantiate(_levelItemPrefab, _levelRoot.transform);
