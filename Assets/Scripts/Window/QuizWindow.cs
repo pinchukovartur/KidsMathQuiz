@@ -17,6 +17,8 @@ public class QuizWindow : MonoBehaviour
     private Button _nextButton;
     [SerializeField]
     public Slider _progress;
+    [SerializeField]
+    public QuestionHelper _helper;
 
     private QuizLogic _logic = new QuizLogic();
 
@@ -53,6 +55,7 @@ public class QuizWindow : MonoBehaviour
         _gameStatisticsText.text = "Осталось: " + _lastQuestionsCount.ToString() + "\nПравильно: " + _correct.ToString() + " не правильно: " + _unCorrect.ToString();
         _progress.value = (_correct + _unCorrect) / (float)_allSize;
 
+        _helper.SpawnHelp(question.GetQuestionText());
     }
 
     private void OnAnswerClick(IAnswer selectedAnswer)
